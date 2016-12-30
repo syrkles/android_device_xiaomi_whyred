@@ -17,15 +17,15 @@
 
 package org.lineageos.settings.doze;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.os.UserHandle;
-import android.support.v7.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
-
-import static android.provider.Settings.Secure.DOZE_ENABLED;
 
 public final class Utils {
 
@@ -34,9 +34,8 @@ public final class Utils {
 
     private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
 
-    protected static final String CATEG_PROX_SENSOR = "proximity_sensor";
-
-    protected static final String GESTURE_PICK_UP_KEY = "gesture_pick_up";
+    protected static final String AMBIENT_DISPLAY_KEY = "ambient_display";
+    protected static final String PICK_UP_KEY = "pick_up";
     protected static final String GESTURE_HAND_WAVE_KEY = "gesture_hand_wave";
     protected static final String GESTURE_POCKET_KEY = "gesture_pocket";
 
@@ -73,12 +72,18 @@ public final class Utils {
 
     protected static boolean isDozeEnabled(Context context) {
         return Settings.Secure.getInt(context.getContentResolver(),
-                DOZE_ENABLED, 1) != 0;
+                Settings.Secure.DOZE_ENABLED, 1) != 0;
     }
 
     protected static boolean enableDoze(boolean enable, Context context) {
-        return Settings.Secure.putInt(context.getContentResolver(),
-                DOZE_ENABLED, enable ? 1 : 0);
+        boolean dozeEnabled = Settings.Secure.putInt(context.getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, enable ? 1 : 0);
+        if (enable) {
+            startService(context);
+        } else {
+            stopService(context);
+        }
+        return dozeEnabled;
     }
 
     protected static void launchDozePulse(Context context) {

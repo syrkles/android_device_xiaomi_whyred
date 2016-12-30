@@ -24,17 +24,15 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
-
     <uses-sdk
-        android:minSdkVersion="24"
-        android:targetSdkVersion="24"/>
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21"/>
 
     <application
         android:label="@string/device_settings_app_name"
         android:persistent="true">
 
-        <receiver android:name=".BootCompletedReceiver">
+        <receiver android:name="com.cyanogenmod.settings.doze.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -50,14 +48,16 @@
             android:label="@string/ambient_display_title"
             android:theme="@android:style/Theme.Material.Settings">
             <intent-filter>
-                <action android:name="org.lineageos.settings.device.DOZE_SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
             <meta-data android:name="com.android.settings.dismiss"
                        android:value="9,13,30" />
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
+                android:value="com.android.settings.category.device" />
+            <meta-data
+                android:name="com.android.settings.icon"
+                android:resource="@drawable/ic_settings_doze" />
         </activity>
 
     </application>
