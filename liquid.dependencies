@@ -1,10 +1,15 @@
 [
   {
     "repository": "android_kernel_xiaomi_sdm660",
+    "repository": "akhilnarang/whyred",
     "target_path": "kernel/xiaomi/sdm660"
+    "branch":"oreo-mr1"
+    "remote":"github"
   },
   {
-    "repository": "android_packages_resources_devicesettings",
-    "target_path": "packages/resources/devicesettings"
+    "repository": "LineageOS/android_packages_resources_devicesettings",
+    "target_path": "packages/resources/devicesettings",
+    "branch": "lineage-15.1",
+    "remote": "github"
   }
 ]
