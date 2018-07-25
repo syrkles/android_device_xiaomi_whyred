@@ -466,7 +466,7 @@
     <!-- Whether the display blanks itself when transition from a doze to a non-doze state -->
     <bool name="config_displayBlanksAfterDoze">true</bool>
      
-     <!-- Doze: when to pulse after a buzzworthy notification arrives -->
+    <!-- Doze: when to pulse after a buzzworthy notification arrives -->
     <string name="doze_pulse_schedule" translatable="false">10s,30s,60s,180s</string>
  
     <!-- Doze: check proximity sensor before pulsing from intent? -->
