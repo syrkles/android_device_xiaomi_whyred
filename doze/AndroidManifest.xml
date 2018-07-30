@@ -46,18 +46,10 @@
         <activity
             android:name=".DozeSettingsActivity"
             android:label="@string/ambient_display_title"
-            android:theme="@android:style/Theme.Material.Settings">
+            android:theme="@style/Theme.Main">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
-            <meta-data android:name="com.android.settings.dismiss"
-                       android:value="9,13,30" />
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.device" />
-            <meta-data
-                android:name="com.android.settings.icon"
-                android:resource="@drawable/ic_settings_doze" />
         </activity>
 
     </application>
